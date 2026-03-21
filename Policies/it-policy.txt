@@ -1,0 +1,21 @@
+IT POLICY DOCUMENT - SmartDesk AI
+
+Section 1.1 - Software Access
+Standard software requests approved by line manager.
+Admin access requires IT Director approval.
+Licensed software only — no pirated software allowed.
+
+Section 1.2 - Hardware Requests
+Laptops replaced every 3 years only.
+New hardware requires line manager approval.
+Personal devices not allowed on company network.
+
+Section 1.3 - Security
+All devices must have antivirus installed.
+VPN required for remote access.
+No sharing of passwords or access credentials.
+
+Section 1.4 - Network Access
+Guest Wi-Fi for personal devices only.
+Company data must stay on company devices.
+USB drives require IT approval before use.

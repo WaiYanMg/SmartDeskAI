@@ -1,0 +1,99 @@
+dotnet new webapi --use-controllers
+
+dotnet add package Azure.AI.OpenAI --prerelease
+
+dotnet add package Microsoft.SemanticKernel
+
+dotnet add package Microsoft.SemanticKernel.Agents.Core --prerelease
+
+dotnet add package Microsoft.SemanticKernel.Connectors.InMemory --prerelease
+
+dotnet add package UglyToad.PdfPig --prerelease
+
+mkdir Agents Models Services Policies
+
+dotnet add package Swashbuckle.AspNetCore
+
+dotnet user-secrets init
+dotnet user-secrets set "AzureOpenAI:DeploymentName" "gpt-4o-mini"
+dotnet user-secrets set "AzureOpenAI:Endpoint" "https://your-resource.openai.azure.com/"
+dotnet user-secrets set "AzureOpenAI:Key" "your-key-here"
+
+dotnet user-secrets init
+dotnet user-secrets set "OpenAI:Key" "paste-your-new-key-here"
+
+dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL
+dotnet add package Microsoft.EntityFrameworkCore
+dotnet add package Microsoft.EntityFrameworkCore.Tools
+
+dotnet user-secrets set "ConnectionStrings:DefaultConnection" "Host=db.ciwqimabuttviiszetfz.supabase.co;Port=5432;Database=postgres;Username=postgres;Password=YOUR-PASSWORD;SSL Mode=Require;Trust Server Certificate=true"
+
+dotnet add package EFCore.NamingConventions
+
+AI Decision comes back
+        ↓
+Check confidence score:
+
+if (confidence >= 85 && !isHighValue && !isLongLeave)
+    → Auto approve/deny
+    → Save to database
+    → Notify employee
+
+else
+    → Add to review_queue with priority
+    → Notify manager
+    → Show AI recommendation as hint
+    → Wait for human decision
+
+    Notifications:
+Manager gets:
+├── Email notification
+├── Dashboard badge (3 pending reviews)
+└── Mobile push (future)
+
+Notification shows:
+├── Request type
+├── Employee name
+├── AI recommendation + confidence
+├── Priority level
+└── "Review Now" button
+
+
+
+**The logic in code:**
+```
+AI Decision comes back
+        ↓
+Check confidence score:
+
+if (confidence >= 85 && !isHighValue && !isLongLeave)
+    → Auto approve/deny
+    → Save to database
+    → Notify employee
+
+else
+    → Add to review_queue with priority
+    → Notify manager
+    → Show AI recommendation as hint
+    → Wait for human decision
+```
+
+**What manager sees in dashboard:**
+```
+📋 Review Queue (3 pending)
+
+🔴 URGENT
+└── Medical claim - €1,200 - David Smith
+    AI: ESCALATE (45% confidence)
+    [Review Now]
+
+🟠 HIGH  
+└── 8 days leave - Sarah Jones
+    AI: DENIED (72% confidence)
+    Reason: Exceeds 5 day limit
+    [Review Now] [Override & Approve]
+
+🟡 MEDIUM
+└── CV Review - John Murphy
+    AI: Shortlist (68% confidence)
+    [Review Now]
