@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Smart_Desk_AI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7dd39111ec2295f91155f25fabf1bcae81480e88")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c35a74cffe790339dd992d53a291dcef20d74914")]
 [assembly: System.Reflection.AssemblyProductAttribute("Smart_Desk_AI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Smart_Desk_AI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
