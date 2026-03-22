@@ -208,29 +208,33 @@ public async Task<IActionResult> History()
             }
         }
 
-        [HttpGet("test-db")]
-        public async Task<IActionResult> TestDB()
+       [HttpGet("test-db")]
+public async Task<IActionResult> TestDB()
+{
+    try
+    {
+        var connectionString = _db.Database.GetConnectionString();
+        var canConnect = await _db.Database.CanConnectAsync();
+        return Ok(new
         {
-            try
-            {
-                var canConnect = await _db.Database.CanConnectAsync();
-                return Ok(new
-                {
-                    connected = canConnect,
-                    message = canConnect
-                        ? "Database connected successfully!"
-                        : "Connection failed!"
-                });
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new
-                {
-                    connected = false,
-                    message = ex.Message
-                });
-            }
-        }
+            connected = canConnect,
+            message = canConnect
+                ? "Database connected successfully!"
+                : "Connection failed!",
+            preview = connectionString?
+                .Substring(0, Math.Min(60, connectionString?.Length ?? 0))
+        });
+    }
+    catch (Exception ex)
+    {
+        return BadRequest(new
+        {
+            connected = false,
+            message = ex.Message,
+            inner = ex.InnerException?.Message
+        });
+    }
+}
 
         private string GetPriorityLabel(int priority) => priority switch
         {
