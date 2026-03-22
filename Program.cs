@@ -14,19 +14,19 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReact", policy =>
     {
-        policy.WithOrigins(
-            "http://localhost:5173",
-            "http://localhost:5174")
+        policy.AllowAnyOrigin()
             .AllowAnyHeader()
             .AllowAnyMethod();
     });
 });
 
-// Supabase PostgreSQL
+// Supabase PostgreSQL — read from either config or environment variable
+var connectionString = 
+    builder.Configuration.GetConnectionString("DefaultConnection") 
+    ?? Environment.GetEnvironmentVariable("DATABASE_URL");
+
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(
-        builder.Configuration
-        .GetConnectionString("DefaultConnection"))
+    options.UseNpgsql(connectionString)
     .UseSnakeCaseNamingConvention());
 
 // Register services
