@@ -14,7 +14,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Smart_Desk_AI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c35a74cffe790339dd992d53a291dcef20d74914")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0fbde5e0afe9eda8fad6b92b9108e2499d4230d6")]
+>>>>>>> parent of c35a74c (Docker file add)
 [assembly: System.Reflection.AssemblyProductAttribute("Smart_Desk_AI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Smart_Desk_AI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

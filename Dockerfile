@@ -1,4 +1,3 @@
-# SmartDesk AI - Railway Deploy v2
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 COPY ["Smart_Desk_AI.csproj", "."]
