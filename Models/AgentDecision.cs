@@ -6,6 +6,7 @@ namespace Smart_Desk_AI.Models
         public string Decision { get; set; } = string.Empty;
         public string Reason { get; set; } = string.Empty;
         public string PolicyReference { get; set; } = string.Empty;
+        public string? Message { get; set; }
         public int ConfidenceScore { get; set; }
     }
 }

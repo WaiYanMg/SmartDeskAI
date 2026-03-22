@@ -10,12 +10,18 @@ Laptops replaced every 3 years only.
 New hardware requires line manager approval.
 Personal devices not allowed on company network.
 
-Section 1.3 - Security
+Section 1.3 - Security Policy
 All devices must have antivirus installed.
 VPN required for remote access.
 No sharing of passwords or access credentials.
+USB drives require IT approval before use.
 
 Section 1.4 - Network Access
 Guest Wi-Fi for personal devices only.
 Company data must stay on company devices.
-USB drives require IT approval before use.
+
+Section 2.1 - Auto Approval Criteria
+Standard software requests: AUTO APPROVE
+VPN access requests: AUTO APPROVE
+Admin access requests: ALWAYS ESCALATE
+New hardware under 3 years: ALWAYS DENY

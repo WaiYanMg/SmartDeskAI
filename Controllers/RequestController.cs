@@ -54,11 +54,13 @@ namespace Smart_Desk_AI.Controllers
             var priority = _reviewService.GetPriority(request, decisions);
 
             var finalOutcome = needsHuman
-                ? "PENDING_REVIEW"
-                : decisions.All(d => d.Decision == "APPROVED")
-                ? "APPROVED"
-                : decisions.Any(d => d.Decision == "DENIED")
-                ? "DENIED" : "ESCALATE";
+    ? "PENDING_REVIEW"
+    : decisions.Any(d => d.Decision == "CONFIRMED")
+    ? "CONFIRMED"
+    : decisions.All(d => d.Decision == "APPROVED")
+    ? "APPROVED"
+    : decisions.Any(d => d.Decision == "DENIED")
+    ? "DENIED" : "ESCALATE";
 
             // Save to database
             var record = new RequestRecord
@@ -97,14 +99,34 @@ namespace Smart_Desk_AI.Controllers
         }
 
         [HttpGet("history")]
-        public async Task<IActionResult> History()
+public async Task<IActionResult> History()
+{
+    var records = await _db.Requests
+        .OrderByDescending(r => r.CreatedAt)
+        .Take(20)
+        .Select(r => new
         {
-            var records = await _db.Requests
-                .OrderByDescending(r => r.CreatedAt)
-                .Take(20)
-                .ToListAsync();
-            return Ok(records);
-        }
+            r.Id,
+            r.RequestType,
+            r.Description,
+            r.Fields,
+            r.FinalOutcome,
+            r.AiDecisions,
+            r.CreatedAt,
+            // Get human decision from review queue
+            HumanDecision = _db.ReviewQueues
+                .Where(q => q.RequestId == r.Id && q.Status == "REVIEWED")
+                .Select(q => q.HumanDecision)
+                .FirstOrDefault(),
+            HumanNotes = _db.ReviewQueues
+                .Where(q => q.RequestId == r.Id && q.Status == "REVIEWED")
+                .Select(q => q.HumanNotes)
+                .FirstOrDefault()
+        })
+        .ToListAsync();
+
+    return Ok(records);
+}
 
         [HttpGet("queue")]
         public async Task<IActionResult> ReviewQueue()

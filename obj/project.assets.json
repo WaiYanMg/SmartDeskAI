@@ -3860,11 +3860,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\0-project\\#Web\\SmartDeskAI\\Smart_Desk_AI.csproj",
+      "projectUniqueName": "E:\\0-project\\Web\\SmartDeskAI\\Smart_Desk_AI.csproj",
       "projectName": "Smart_Desk_AI",
-      "projectPath": "E:\\0-project\\#Web\\SmartDeskAI\\Smart_Desk_AI.csproj",
+      "projectPath": "E:\\0-project\\Web\\SmartDeskAI\\Smart_Desk_AI.csproj",
       "packagesPath": "C:\\Users\\Wai\\.nuget\\packages\\",
-      "outputPath": "E:\\0-project\\#Web\\SmartDeskAI\\obj\\",
+      "outputPath": "E:\\0-project\\Web\\SmartDeskAI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

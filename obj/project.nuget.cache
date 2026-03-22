@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Grfk21xwris=",
+  "dgSpecHash": "DzrDJqwA8Nk=",
   "success": true,
-  "projectFilePath": "E:\\0-project\\#Web\\SmartDeskAI\\Smart_Desk_AI.csproj",
+  "projectFilePath": "E:\\0-project\\Web\\SmartDeskAI\\Smart_Desk_AI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Wai\\.nuget\\packages\\azure.ai.openai\\2.9.0-beta.1\\azure.ai.openai.2.9.0-beta.1.nupkg.sha512",
     "C:\\Users\\Wai\\.nuget\\packages\\azure.core\\1.51.1\\azure.core.1.51.1.nupkg.sha512",

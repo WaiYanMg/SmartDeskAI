@@ -14,47 +14,52 @@ namespace Smart_Desk_AI.Services
         }
 
         public async Task<bool> NeedsHumanReview(
-            SubmissionRequest request,
-            List<AgentDecision> decisions)
-        {
-            var avgConfidence = decisions.Average(d => d.ConfidenceScore);
-            var hasEscalation = decisions.Any(d => d.Decision == "ESCALATE");
+    SubmissionRequest request,
+    List<AgentDecision> decisions)
+{
+    var avgConfidence = decisions.Average(d => d.ConfidenceScore);
+    var hasEscalation = decisions.Any(d => d.Decision == "ESCALATE");
 
-            // Always human review if AI is unsure
-            if (avgConfidence < 85) return true;
+    // Booking confirmations don't need human review
+    if (request.RequestType.ToLower() == "booking")
+    {
+        var bookingDecision = decisions.FirstOrDefault();
+        if (bookingDecision?.Decision == "CONFIRMED") return false;
+        if (bookingDecision?.Decision == "DENIED") return false;
+        return true; // Only escalate if AI is unsure
+    }
 
-            // Always human review if any agent escalated
-            if (hasEscalation) return true;
+    // Always human review if AI escalated
+    if (hasEscalation) return true;
 
-            // Check specific request type rules
-            switch (request.RequestType.ToLower())
-            {
-                case "leave":
-                    // Long leave always needs human
-                    if (request.Fields != null &&
-                        request.Fields.Contains("days") &&
-                        ExtractDays(request.Fields) > 5)
-                        return true;
-                    break;
+    // Always human review if AI is unsure
+    if (avgConfidence < 75) return true;
 
-                case "expense":
-                case "claim":
-                    // High value claims always need human
-                    if (request.Fields != null &&
-                        request.Fields.Contains("amount") &&
-                        ExtractAmount(request.Fields) > 500)
-                        return true;
-                    break;
+    // Check specific request type rules
+    switch (request.RequestType.ToLower())
+    {
+        case "leave":
+            if (request.Fields != null &&
+                request.Fields.Contains("days") &&
+                ExtractDays(request.Fields) > 5)
+                return true;
+            break;
 
-                case "cv":
-                case "recruitment":
-                    // CV reviews always need human
-                    return true;
-            }
+        case "expense":
+        case "claim":
+            if (request.Fields != null &&
+                request.Fields.Contains("amount") &&
+                ExtractAmount(request.Fields) > 500)
+                return true;
+            break;
 
-            return false;
-        }
+        case "cv":
+        case "recruitment":
+            return true;
+    }
 
+    return false;
+}
         public int GetPriority(
             SubmissionRequest request,
             List<AgentDecision> decisions)

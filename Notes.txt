@@ -97,3 +97,28 @@ else
 └── CV Review - John Murphy
     AI: Shortlist (68% confidence)
     [Review Now]
+
+
+    100% — Absolutely certain
+├── Clear request ✅
+├── Slot available ✅
+└── No rule violations ✅
+Example: Jake's haircut booking
+
+85-99% — Very confident
+├── Request clear
+├── Minor ambiguity
+└── Auto approved
+
+70-84% — Confident but cautious  
+├── Some details missing
+└── Still proceeds
+
+60-69% — Uncertain
+├── Missing important info
+└── Asks for clarification
+
+0-59% — Very unsure → ESCALATE
+├── Conflicting information
+├── Rule violations possible
+└── Sends to human review
